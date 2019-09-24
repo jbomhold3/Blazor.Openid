@@ -1,11 +1,8 @@
 # Blazor.OpenId
 
-<img src="https://raw.githubusercontent.com/henalbrod/Blazor.Auth0/master/src/Blazor.Auth0.ClientSide/icon.png" height="150" alt="Blazor Auth0 Library" align="right"/>
-
 This is a library for Blazor authentication with OpenId Authorization Code-Grantflow, using IdenityServer or other OpenId providers and Silent Refresh for [Blazor](http://blazor.net) over .NET Core v3.0.0 client & server-side solutions, the idea behind this is to have an easy way of using OpenId services in Blazor without the need of the js library.
 
-[![GitHub license](https://img.shields.io/github/license/jbomhold3/Blazor.OpenId?color=blue)](https://github.com/jbomhold3/Blazor.Openid/blob/master/LICENSE)
-[![Nuget](https://img.shields.io/nuget/v/Blazor-OpenId?color=green&label=Nuget%3A%20Blazor-OpenId)](https://www.nuget.org/packages/Blazor-Auth0-ClientSide)
+[![Nuget](https://img.shields.io/nuget/v/Blazor-OpenId?color=green&label=Nuget%3A%20Blazor-OpenId)](https://www.nuget.org/packages/Blazor-OpenId)
 
 
 ## Prerequisites
@@ -83,8 +80,9 @@ Replace App.razor content with the following code
 
 ## Authors
 **John J Bomhold** - OpenId implementation of Auth0 
+
 Auth0 was created by
-**Henry Alberto Rodriguez** - _Initial work_ - [GitHub](https://github.com/henalbrod) -  [Twitter](https://twitter.com/henalbrod)  - [Linkedin](https://www.linkedin.com/in/henalbrod/)
+**Henry Alberto Rodriguez** - [GitHub](https://github.com/henalbrod) -  [Twitter](https://twitter.com/henalbrod)  - [Linkedin](https://www.linkedin.com/in/henalbrod/)
 
 ## License
 
