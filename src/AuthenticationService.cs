@@ -429,8 +429,16 @@ namespace Blazor.OpenId
         {
             if (!string.IsNullOrEmpty(clientOptions.Audience) && !string.IsNullOrEmpty(sessionInfo.AccessToken))
             {
-                List<string> permissionsList = Auth0.CommonAuthentication.DecodeTokenPayload<AccessTokenPayload>(sessionInfo.AccessToken).Permissions ?? new List<string>();
-                userInfo.Permissions.AddRange(permissionsList);
+                try
+                {
+                    List<string> permissionsList = Auth0.CommonAuthentication.DecodeTokenPayload<AccessTokenPayload>(sessionInfo.AccessToken).Permissions ?? new List<string>();
+                    userInfo.Permissions.AddRange(permissionsList);
+                }
+                catch
+                {
+                    List<string> permissionsList = Auth0.CommonAuthentication.DecodeTokenPayload<AccessTokenPayloadStringAud>(sessionInfo.AccessToken).Permissions ?? new List<string>();
+                    userInfo.Permissions.AddRange(permissionsList);
+                }
             }
 
             User = userInfo;
