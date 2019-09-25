@@ -18,10 +18,17 @@ namespace Blazor.OpenId
         {
             this.authenticationService = authenticationService ?? throw new ArgumentNullException(nameof(authenticationService));
 
-            this.authenticationService.SessionStateChangedEvent += (a, b) =>
+            this.authenticationService.SessionStateChangedEventAsync += AuthenticationService_SessionStateChangedEventAsync;
+          
+        }
+
+        private Task AuthenticationService_SessionStateChangedEventAsync(object arg1, Models.SessionStates state)
+        {
+            if (state != Models.SessionStates.Processing)
             {
-                this.NotifyAuthenticationStateChanged(this.GetAuthenticationStateAsync());
-            };
+                this.NotifyAuthenticationStateChanged(GetAuthenticationStateAsync());
+            }
+            return Task.CompletedTask;
         }
 
         /// <inheritdoc/>

@@ -36,6 +36,9 @@ namespace Blazor.OpenId
         /// <inheritdoc/>
         public event EventHandler<OpenId.Models.SessionStates> SessionStateChangedEvent;
 
+        /// <inheritdoc/>
+        public event Func<object, OpenId.Models.SessionStates, Task> SessionStateChangedEventAsync;
+
         /// <summary>
         /// The event fired just before staring a silent login.
         /// </summary>
@@ -48,11 +51,12 @@ namespace Blazor.OpenId
         public OpenId.Models.SessionStates SessionState
         {
             get => sessionState;
-            private set
+            private set  
             {
                 if (value != sessionState)
                 {
                     sessionState = value;
+                    Task.Run(async () => await SessionStateChangedEventAsync?.Invoke(this, SessionState));
                     SessionStateChangedEvent?.Invoke(this, SessionState);
                 }
             }
@@ -252,15 +256,23 @@ namespace Blazor.OpenId
             if (parsedHash == null)
             {
                 // Should we keep the session alive?
-                if (clientOptions.SlidingExpiration || clientOptions.RequireAuthenticatedUser)
+                if (sessionState == OpenId.Models.SessionStates.Active)
                 {
-                    await SilentLogin().ConfigureAwait(false);
-                }
+                    if (clientOptions.SlidingExpiration || clientOptions.RequireAuthenticatedUser)
+                    {
+                        await SilentLogin().ConfigureAwait(false);
+                    }
+                    else
+                    {
+
+                        await LogOut().ConfigureAwait(false);
+
+                        ClearSession();
+                    }
+                } 
                 else
                 {
-                    await LogOut().ConfigureAwait(false);
-
-                    ClearSession();
+                    SessionState = OpenId.Models.SessionStates.Inactive;
                 }
             }
             else
@@ -570,7 +582,7 @@ namespace Blazor.OpenId
             clientOptions.RevocationEndpoint = response.RevocationEndpoint;
             clientOptions.EndSessionEndpoint = response.EndSessionEndpoint;
 
-            sessionState = OpenId.Models.SessionStates.Undefined;
+            SessionState = OpenId.Models.SessionStates.Processing;
             await ValidateSession().ConfigureAwait(false);
         }
         private string BuildRedirectUrl()

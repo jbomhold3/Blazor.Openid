@@ -14,10 +14,16 @@ namespace Blazor.OpenId
     public interface IAuthenticationService
     {
         Task SilentLogin();
+
         /// <summary>
         /// The event fired just after the session state has changed.
         /// </summary>
-        event EventHandler<SessionStates> SessionStateChangedEvent;
+        event EventHandler<OpenId.Models.SessionStates> SessionStateChangedEvent;
+
+        /// <summary>
+        /// The event fired just after the session state has changed.
+        /// </summary>
+        event Func<object, OpenId.Models.SessionStates, Task> SessionStateChangedEventAsync;
 
         /// <summary>
         /// Gets a <see cref="SessionInfo"/> representing the current session.

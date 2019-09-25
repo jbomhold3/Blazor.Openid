@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RazorLangVersion>3.0</RazorLangVersion>
-    <Version>1.0.0-Preview1</Version>
+    <Version>1.0.0-Preview2</Version>
     <Authors>John J Bomhold</Authors>
     <Description>OpenId library for Balzor</Description>
     <PackageProjectUrl>https://github.com/jbomhold3/Blazor.Openid</PackageProjectUrl>
@@ -14,7 +14,10 @@
     <Copyright>John J Bomhold</Copyright>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageId>Blazor-OpenId</PackageId>
-    <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+    <PackageReleaseNotes>
+      - Added SessionStateChangedEventAsync event.
+      - Minor Fix for SessionStateChangedEvent
+    </PackageReleaseNotes>
   </PropertyGroup>
 
 

@@ -12,5 +12,6 @@
         Active = 1,
         Inactive = 2,
         NoConfig = 3,
+        Processing = 4
     }
 }
