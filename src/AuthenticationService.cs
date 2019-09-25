@@ -256,23 +256,18 @@ namespace Blazor.OpenId
             if (parsedHash == null)
             {
                 // Should we keep the session alive?
-                if (sessionState == OpenId.Models.SessionStates.Active)
+                if ((clientOptions.SlidingExpiration && sessionState == OpenId.Models.SessionStates.Active) || clientOptions.RequireAuthenticatedUser)
                 {
-                    if (clientOptions.SlidingExpiration || clientOptions.RequireAuthenticatedUser)
-                    {
-                        await SilentLogin().ConfigureAwait(false);
-                    }
-                    else
-                    {
-
-                        await LogOut().ConfigureAwait(false);
-
-                        ClearSession();
-                    }
-                } 
+                    await SilentLogin().ConfigureAwait(false);
+                }
                 else
                 {
+                    if (sessionState == OpenId.Models.SessionStates.Active)
+                    {
+                        await LogOut().ConfigureAwait(false);
+                    }
                     SessionState = OpenId.Models.SessionStates.Inactive;
+                    ClearSession();
                 }
             }
             else

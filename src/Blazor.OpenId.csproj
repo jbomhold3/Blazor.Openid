@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RazorLangVersion>3.0</RazorLangVersion>
-    <Version>1.0.0-Preview2</Version>
+    <Version>1.0.0-Preview2-01</Version>
     <Authors>John J Bomhold</Authors>
     <Description>OpenId library for Balzor</Description>
     <PackageProjectUrl>https://github.com/jbomhold3/Blazor.Openid</PackageProjectUrl>
@@ -16,7 +16,8 @@
     <PackageId>Blazor-OpenId</PackageId>
     <PackageReleaseNotes>
       - Added SessionStateChangedEventAsync event.
-      - Minor Fix for SessionStateChangedEvent
+      - Minor Fix for SessionStateChangedEvent.
+      - Adds Processing State. When first running validation checks. Can be used for pages with custom actions for initial auth/no auth. IG redirecting to another webpage with not authorized.
     </PackageReleaseNotes>
   </PropertyGroup>
 
