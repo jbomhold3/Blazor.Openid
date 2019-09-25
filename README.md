@@ -81,7 +81,7 @@ Replace App.razor content with the following code
 ## Authors
 **John J Bomhold** - OpenId implementation of Auth0 
 
-Auth0 was created by
+[Blazor.Auth0](https://github.com/henalbrod/Blazor.Auth0) was created by
 **Henry Alberto Rodriguez** - [GitHub](https://github.com/henalbrod) -  [Twitter](https://twitter.com/henalbrod)  - [Linkedin](https://www.linkedin.com/in/henalbrod/)
 
 ## License
